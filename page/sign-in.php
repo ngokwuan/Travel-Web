@@ -156,10 +156,10 @@
 
           <div class="other-login">
             <button class="google-btn">
-              <img src="img/google.png" alt="google" />Sign in with Google
+              <img src="../img/google.png" alt="google" />Sign in with Google
             </button>
             <button class="apple-btn">
-              <img src="img/apple.png" alt="apple" />Sign in with Apple
+              <img src="../img/apple.png" alt="apple" />Sign in with Apple
             </button>
           </div>
 
@@ -167,7 +167,7 @@
         </form>
       </div>
       <div class="image">
-        <img src="img/b0615ccdd4df2dff56a3f0f0d7205603.jpg" alt="img" />
+        <img src="../img/b0615ccdd4df2dff56a3f0f0d7205603.jpg" alt="img" />
       </div>
     </div>
   </body>
