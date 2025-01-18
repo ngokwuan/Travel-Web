@@ -14,9 +14,9 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: Helvetica, sans-serif;
         }
-
+   
         body {
             background-color: #f8f9fa;
             color: #333;
@@ -30,15 +30,22 @@
             position: relative;
             padding-top:50px;
         }
-        nav{
+        section {
+    position: relative;
+    padding-top: 70px; /* Adjust this value to match the height of your fixed navigation bar */
+    margin-top: -70px; /* Adjust this value to match the height of your fixed navigation bar */
+}
+        .main-nav{
+        display: none;
             background-color: #fff;
             position: fixed;
-            display: flex;
+            
             gap: 20px;
-            margin: 20px 0 30px 0;
+            padding: 20px 0 30px 0;
             z-index: 1000;
             height: 30px;
             width: 100%;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         nav a {
@@ -69,6 +76,9 @@ nav a.active {
             margin-bottom: 1.5rem;
             color: #2d3436;
         }
+        section {
+            scroll-margin-top: 100px; /* Add space above sections to prevent header overlap */
+        }
 
         /* Image Gallery */
         .gallery {
@@ -79,7 +89,7 @@ nav a.active {
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-
+       
         .main-image {
             width: 100%;
             height: 400px;
@@ -91,6 +101,7 @@ nav a.active {
         .main-image:hover {
             transform: scale(1.02);
         }
+
 
         .thumbnail-container {
             position: absolute;
@@ -664,19 +675,19 @@ nav a.active {
 <body>
 <?php include '../component/header.php'; ?>
 
-<nav>
+<nav class="main-nav">
     <a href="#overview">Overviews</a>
-    <a href="#itinerary-container">Schedule</a>
-    <a href="#tour-description">Tour Description</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#tours-description">Tour Description</a>
     <a href="#about-services">About Services</a>
     <a href="#reviews">Reviews</a>
 </nav>
-    <div id="overview" class="container">
+    <div  class="container">
     
         <h1>Vintage Double Decker Bus Tour & Thames River Cruise</h1>
         
         <!-- Image Gallery -->
-        <div class="gallery">
+        <section id="overview" class="gallery">
             <img src="../img/HaGiang/haGiangBG.jpg" alt="Tour" class="main-image">
             <div class="thumbnail-container">
                 <img src="../img/HaGiang/haGiangBG.jpg" alt="Thumbnail 1" class="thumbnail">
@@ -684,7 +695,7 @@ nav a.active {
                 <img src="../img/HaGiang/haGiangBG.jpg" alt="Thumbnail 3" class="thumbnail">
                 <img src="../img/HaGiang/haGiangBG.jpg" alt="Thumbnail 4" class="thumbnail">
             </div>
-        </div>
+        </section>
 
         <div class="content-grid">
             <!-- Left Column -->
@@ -739,7 +750,7 @@ nav a.active {
                         </div>
                     </div>
                 </div>
-                <section id="itinerary-container" class=" tour-description">
+                <section id="schedule" class=" tour-description">
                     <h2 class="tour-title">Schedule</h2>
                     <div class="day" onclick="toggleDetails('day1')">
                         <strong>Day 1: Hà Nội - Tuyên Quang - Hà Giang</strong>
@@ -782,14 +793,20 @@ nav a.active {
                         </div>
                     </div>
                 </section>
-                <section id="tour-description" class="tour-description">
+                <section id="tours-description" class="tour-description">
                         <h2 class="tour-title">Tour Description</h2>
                         <p>See the highlights of London via 2 classic modes of transport on this half-day adventure. First, enjoy great views of Westminster Abbey, the Houses of Parliament, and the London Eye on a vintage double-decker bus.</p>
 
                         <p>Visit St. Paul’s Cathedral, Sir Christopher Wren’s masterpiece, and explore the historic Tower of London, home to the Crown Jewels and the famous Beefeaters.</p>
 
                         <p>Cruise along the River Thames, passing Shakespeare’s Globe and London Bridge, before heading to Buckingham Palace to witness the iconic Changing of the Guard ceremony.</p>
-                </section>         
+                
+                        <p>See the highlights of London via 2 classic modes of transport on this half-day adventure. First, enjoy great views of Westminster Abbey, the Houses of Parliament, and the London Eye on a vintage double-decker bus.</p>
+
+<p>Visit St. Paul’s Cathedral, Sir Christopher Wren’s masterpiece, and explore the historic Tower of London, home to the Crown Jewels and the famous Beefeaters.</p>
+
+<p>Cruise along the River Thames, passing Shakespeare’s Globe and London Bridge, before heading to Buckingham Palace to witness the iconic Changing of the Guard ceremony.</p>
+</section>         
                 <section id="about-services" class="tour-description">
                     <h2 class="tour-title">About Services</h2>
                     <p>Nếu bạn đang tìm kiếm một chuyến đi khám phá hết những hòn đảo xinh đẹp tại Quy Nhơn, tham khảo ngay tour Quy Nhơn vi vu Kỳ Co - Eo Gió, Hòn Khô và nhiều nơi khác nhé!
@@ -960,15 +977,6 @@ nav a.active {
     <?php include '../component/footer.php'; ?>
 
     <script>
-        document.querySelectorAll('nav a').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
-  });
-});
-
     function toggleDetails(dayId) {
         var details = document.getElementById(dayId);
         if (details.style.display === "block") {
@@ -1009,44 +1017,27 @@ nav a.active {
     details.style.display = details.style.display === 'block' ? 'none' : 'block';
     day.classList.toggle('active');
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('nav ul li a');
-
-    window.addEventListener('scroll', function() {
-        let current = '';
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 60) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(current)) {
-                link.classList.add('active');
-            }
-        });
-    });
-});
+//Menu navigation
 
 document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('nav a');
+    const nav = document.querySelector('.main-nav');
 
     window.addEventListener('scroll', function() {
         let current = '';
+        let showNav = false;
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             if (pageYOffset >= sectionTop - 60) {
                 current = section.getAttribute('id');
+                showNav = true;
             }
         });
-
+        // hide or show nav links based on scroll position
+        nav.style.display = showNav ? 'block' : 'none';
+//highlight active nav link based on scroll position
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href').includes(current)) {
@@ -1055,6 +1046,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
    </script>
 
 </body>

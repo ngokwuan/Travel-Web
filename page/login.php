@@ -176,8 +176,8 @@ background-color: #ccc;
                     <span class="line"></span>
                 </div>
                 <div class="other-login">
-                  <button class="google-btn"><img src="img/google.png" alt="gg">Login with Google</button>
-                <button class="apple-btn"><img src="img/apple.png" alt="apple">Login with Apple</button>
+                  <button class="google-btn"><img src="../img/google.png" alt="gg">Login with Google</button>
+                <button class="apple-btn"><img src="../img/apple.png" alt="apple">Login with Apple</button>
                 </div>
                 
                 <div class="other">
@@ -187,7 +187,7 @@ background-color: #ccc;
             </form>
         </div>
         <div class="image">
-            <img src="img/b0615ccdd4df2dff56a3f0f0d7205603.jpg" alt="login">
+            <img src="../img/b0615ccdd4df2dff56a3f0f0d7205603.jpg" alt="login">
         </div>
     </div>
 </body>
